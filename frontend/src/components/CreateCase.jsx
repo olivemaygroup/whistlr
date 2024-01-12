@@ -119,9 +119,9 @@ const CreateCase = () => {
           <label>Select the initial level you would like to set for this case:</label>
           <select>
             <option>Select</option>
-            <option>Level 1</option>
-            <option>Level 2</option>
-            <option>Level 3</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
           </select>
         </div>
         <div className="info">

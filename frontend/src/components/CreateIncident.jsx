@@ -52,9 +52,9 @@ const CreateIncident = () => {
           <label>Grade the incident:</label>
           <select>
             <option>Select</option>
-            <option>Level 1</option>
-            <option>Level 2</option>
-            <option>Level 3</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
           </select>
           <label>Describe the incident:</label>
           <textarea rows={15}/>
