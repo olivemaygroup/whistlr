@@ -47,10 +47,7 @@ const profileScheme = new Scheme({
     type: String,
     requied: true
   },
-  companylinkedin: {
-    type: String,
-    required: false
-  },
+ 
   companytwitter: {
     type: String,
     required: false

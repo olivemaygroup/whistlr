@@ -37,8 +37,14 @@ const incidentSchema = new Schema({
   },
   user_id: {
     type: String,
-    required: true
+    required: true,
+  }, 
+  case_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Case',
+    required: true,
   }
+
 })
 
 module.exports = mongoose.model('Incident', incidentSchema)

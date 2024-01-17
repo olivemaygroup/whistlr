@@ -1,17 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLogin } from '../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
-const Login = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, error, isLoading } = useLogin();
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+   
+    if (user && user.email === 'admin@whistlr.com') {
+      navigate('/admin');
+    } 
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    navigate('/mycases');
+   
   };
 
     return (
@@ -38,4 +47,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default AdminLogin

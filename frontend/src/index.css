@@ -13,31 +13,83 @@
   --error: #e7195a;
 }
 
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+input.error, select.error {
+  border: 1px solid var(--error);
+}
+
 body {
   background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
+  color: black;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* Nav bar CSS*/
+nav {
+  position: fixed;
+  background-color: #f1f1f1;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+  height: 80px;
+}
 
 nav .container {
+  height: 70px;
   max-width: 95%;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
+
+.signed-in {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.signed-in p {
+  margin-right: 10px;
+}
+
+.signed-in p:hover {
+  font-weight: bolder ;
+}
+
+
 
 nav h1 {
   color: var(--primary)
 }
 
+.pages {
+  margin-top: 10%;
+}
 .signup {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
 }
 
 nav button {
@@ -46,26 +98,23 @@ nav button {
   border-radius: 5px;
   margin-left: 10px;
   padding: 10px;
+  cursor: pointer;
 }
 
 hr {
   color: grey;
 }
 
-/* HOME page CSS */
+/* Page CSS */
 
-.home, .admin-page, .user-cases {
+.home, .admin-page, .mycases-container {
   margin: auto;
   padding: 10px 20px;
   max-width: 1400px;
 }
 
-.home section, .admin-page section, .user-cases section {
+.home section, .mycases-container section {
   margin-bottom: 40px;
-}
-
-.hook {
-  margin: 40px 0px;
 }
 
 .data {
@@ -80,10 +129,6 @@ hr {
   border-radius: 10px;
   margin: 20px;
   font-weight: bolder;
-}
-
-h2 {
-  margin-bottom: 30px;
 }
 
 .explainer button {
@@ -179,6 +224,30 @@ form.large .info {
   padding-left: 20px;
 }
 
+/* my Cases page */
+
+.mycases-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+   
+}
+
+.mycases-action button {
+  background-color: var(--secondary);
+  border: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 20px;
+  padding: auto;
+  font-weight: bolder;
+  font-size: 20px;
+  align-content: center;
+  justify-content: center;
+}
+
+
 /* CASE overview */
 
 .case-container {
@@ -186,8 +255,11 @@ form.large .info {
   flex-direction: column;
   margin: 20px auto;
   max-width: 800px;
-  background-color: rgb(217, 217, 217);
   border-radius: 7px;
+  box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
+  background-color: #f1f1f1;
+  height: fit-content;
+  padding-bottom: 10px;
 }
 
 .case-info {
@@ -205,24 +277,28 @@ form.large .info {
 }
 
 .case-options button {
-  background-color: var(--primary);
-  border: none;
+  /* background-color: var(--primary); */
+  border: solid 2px var(--primary);
+  height: 40px;
   width: 80%;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
 }
+.case-options button:hover {
+  background-color: var(--secondary);
+
+}
 
 /* INCIDENT */
 
-.incident-container {
+.incident-item {
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
-  max-width: 800px;
-  background-color: rgba(170, 238, 170, 0.675);
-  /* border: solid 3px var(--primary); */
-  border-radius: 7px;
+  margin: auto;
+  width: 95%;
+  /* border-bottom: solid black 2px; */
+  /* height: fit-content; */
 }
 
 .incident-summary {
@@ -230,25 +306,115 @@ form.large .info {
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
+  height:20%;
   align-items: center;
+  font-style: italic;
 }
-.incident-summary button {
-  background-color: var(--primary);
-  border: none;
-  width: 15%;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
+.incident-summary p:hover {
+  font-weight: bolder;
 }
+
 
 .incident-detail {
   display: flex;
   flex-direction: row;
   margin: 10px;
+  width: 100%;
+  height: fit-content;
   justify-content: space-between;
 }
 
-.incident-container section {
-  width: 50%;
-  justify-content: space-between;
+.incident-description {
+  box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
+  padding: 10px;
+  width: 85%;
+  height: 100%;
+  border-radius: 5px;
+  overflow-wrap: break-word;
 }
+
+.incident-detail button {
+  background-color: var(--secondary);
+  border: none;
+  width: 80%;
+  height: 35px;
+  border-radius: 5px;
+  margin: 0px 10px;
+  padding: 10px;
+}
+
+/* Profile container */
+
+.profile-container {
+  max-width: 80%;
+  margin: auto;
+}
+.profile-container h4 {
+  color: var(--primary)
+}
+.profile-container button {
+  background-color: var(--secondary);
+  border: none;
+  width: 80px;
+  height: 35px;
+  border-radius: 5px;
+  margin: 20px 10px;
+  padding: 10px;
+}
+
+.profile-container h2 {
+  margin: 10px 0x;
+}
+
+.profile-container a {
+  text-decoration: none;
+  color: black;
+}
+.profile-info p {
+  padding: 10px;
+}
+
+/* Admin page */
+
+
+
+.case-detail-container {
+  border-radius: 7px;
+  box-shadow: 3px 3px 20px rgba(0,0,0,0.2);
+  margin: 20px 0px;
+  background-color: none;
+  
+} 
+
+tbody, td {
+  margin: 20px 0px;
+  /* background-color: #f1f1f1; */
+  /* box-shadow: 3px 3px 20px rgba(0,0,0,0.2); */
+  height: 40px;
+  background-color: rgba(175, 231, 45, 0.147);
+  
+}
+
+.case-container tbody {
+  border-spacing: 20px 0px;
+}
+
+th {
+  background-color: var(--primary);
+  padding: 2px 8px;
+  font-weight: 300;
+  border-radius: 10px 10px 0px 0px;
+}
+
+td {
+  font-size: 12px;
+  padding: 2px 8px;
+  align-content: center;
+  text-align: center;
+}
+th:first-child {
+  width: 100%;
+}
+
+
+

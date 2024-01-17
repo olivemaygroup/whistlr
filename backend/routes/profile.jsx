@@ -9,9 +9,9 @@ const router = express.Router()
 router.use(requireAuth)
 
 // Create profile
-router.post('/createprofile', createProfile)
+router.post('/addprofile', createProfile)
 
 // get profile
-router.get('/getprofile/:id', getProfile)
+router.get('/getprofile/', getProfile)
 
 module.exports = router;

@@ -1,29 +1,128 @@
+import { useAuthContext } from "../hooks/useAuthContext"
+import { useMycasesContext } from "../hooks/useMyCasesContext"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+// import CaseOverview from "./CaseOverview"
+import { useParams } from "react-router-dom"
 
 const CreateIncident = () => {
 
+  const { caseId } = useParams()
+  const navigate = useNavigate()
+
+  const { dispatch } = useMycasesContext()
+  const { user } = useAuthContext()
+
+  const [date, setDate] = useState('')
+  const [recurring, setRecurring] = useState('')
+  const [medium, setMedium] = useState('')
+  const [location, setLocation] = useState('')
+  const [platform, setPlatform] = useState('')
+  const [witnessed, setWitnessed] = useState('')
+  const [grade, setGrade] = useState('')
+  const [description, setDescription] = useState('')
+  const [error, setError] = useState(null)
+  const [emptyFields, SetEmptyFields] = useState([])
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if(!user) {
+      setError('You must be logged in')
+      return
+    }
+  
+
+  const newIncident = {
+    date,
+    recurring,
+    medium,
+    location,
+    platform,
+    witnessed,
+    grade,
+    description,
+    user_id: user._id,
+    case_id: caseId,
+  }
+
+  try {
+    const response = await fetch('http://localhost:3003/incident/create', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(newIncident),
+      headers: {
+        'content-type': 'Application/json',
+        'Authorization': `Bearer ${user.token}`
+      }
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+      setError(json.error)
+      SetEmptyFields(json.emptyFields)
+    }
+
+    if (response.ok) {
+      setDate('')
+      setRecurring('')
+      setMedium('')
+      setLocation('')
+      setPlatform('')
+      setWitnessed('')
+      setGrade('')
+      setDescription('')
+      setError(null)
+      dispatch({type: 'CREATE_INCIDENT', payload: json})
+      SetEmptyFields([])
+      navigate('/mycases')
+    }
+    if (!response.ok) {
+      setError(json.error)
+    }
+  } catch (error) {
+    setError({error: error})
+  }
+}
+
   return (
-    <form className="large">
+    <form className="large" onSubmit={handleSubmit}>
       <h2>Create a new incident</h2>
       <div className="item">
         <div className="details">
           <label>Date:</label>
           <input 
           type="date"
+          onChange={(e) => setDate(e.target.value)}
+          value={date}
+          className={emptyFields.includes('date') ? 'error' : ''}
           ></input>
           <label>Is this the first incident or recurring:</label>
-          <select>
+          <select
+          onChange={(e) => setRecurring(e.target.value)}
+          value={recurring}
+          className={emptyFields.includes('first') ? 'error' : ''}
+          >
             <option>Select</option>
             <option>First</option>
             <option>Recurring</option>
           </select>
           <label>Was it in-person or digital:</label>
-          <select>
+          <select
+          onChange={(e) => setMedium(e.target.value)}
+          value={medium}
+          className={emptyFields.includes('medium') ? 'error' : ''}
+          >
             <option>Select</option>
             <option>In-person</option>
             <option>Digital</option>
           </select>
           <label>Location (In-person):</label>
-          <select>
+          <select
+          onChange={(e) => setLocation(e.target.value)}
+          value={location}
+          className={emptyFields.includes('location') ? 'error' : ''}
+          >
             <option>Select or choose NA</option>
             <option>NA</option>
             <option>Office</option>
@@ -35,7 +134,11 @@ const CreateIncident = () => {
             <option>Outside work</option>
           </select>
           <label>Platform (Digital):</label>
-          <select>
+          <select
+          onChange={(e) => setPlatform(e.target.value)}
+          value={platform}
+          className={emptyFields.includes('platform') ? 'error' : ''}
+          >
             <option>Select or choose NA</option>
             <option>NA</option>
             <option>Email</option>
@@ -44,20 +147,33 @@ const CreateIncident = () => {
             <option>Social media</option>
           </select>
           <label>Was the incident witnessed:</label>
-          <select>
+          <select
+          onChange={(e) => setWitnessed(e.target.value)}
+          value={witnessed}
+          className={emptyFields.includes('witnessed') ? 'error' : ''}
+          >
             <option>Select</option>
             <option>Yes</option>
             <option>No</option>
           </select>
           <label>Grade the incident:</label>
-          <select>
+          <select
+          onChange={(e) => setGrade(e.target.value)}
+          value={grade}
+          className={emptyFields.includes('grade') ? 'error' : ''}
+          >
             <option>Select</option>
             <option>1</option>
             <option>2</option>
             <option>3</option>
           </select>
           <label>Describe the incident:</label>
-          <textarea rows={15}/>
+          <textarea 
+          rows={15}
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
+          className={emptyFields.includes('description') ? 'error' : ''}
+          />
         </div>
         <div className="info">
           <h3>Info:</h3>
@@ -65,6 +181,7 @@ const CreateIncident = () => {
         </div>
       </div>
       <button><h3>Add incident</h3></button>
+      {error && <div className="error">{error}</div>}
     </form>
   )
 }

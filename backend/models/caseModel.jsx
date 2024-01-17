@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Incident = require('./incidentModel.jsx')
 
 const Schema = mongoose.Schema
 
@@ -38,7 +39,7 @@ const caseSchema = new Schema({
     type: String,
     required: true,
   },
-  grade: {
+  department: {
     type: String,
     required: true,
   },
@@ -62,10 +63,6 @@ const caseSchema = new Schema({
     type: String,
     required: true,
   },
-  outsideContact: {
-    type: String,
-    required: true,
-  },
   feelSafe: {
     type: String,
     required: true,
@@ -77,8 +74,16 @@ const caseSchema = new Schema({
   user_id: {
     type: String,
     required: true
-  }
-  // user_id to add later
+  },
+  reported: {
+    type: Boolean,
+  },
+  incidents: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Incident',
+    }
+  ]
 }, { timestamps: true })
 
 module.exports = mongoose.model('Case', caseSchema)
