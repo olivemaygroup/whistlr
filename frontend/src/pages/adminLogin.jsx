@@ -3,6 +3,8 @@ import { useLogin } from '../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 
+let admin = process.env.REACT_APP_ADMIN
+
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -12,7 +14,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
    
-    if (user && user.email === 'admin@whistlr.com') {
+    if ((user && user.email === admin)) {
       navigate('/admin');
     } 
   }, [user, navigate]);
@@ -21,6 +23,9 @@ const AdminLogin = () => {
     e.preventDefault();
     await login(email, password);
    
+    // if (error === null) {
+    //   navigate('/admin')
+    // }
   };
 
     return (

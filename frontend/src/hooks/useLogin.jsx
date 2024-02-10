@@ -17,13 +17,13 @@ export const useLogin = () => {
       body: JSON.stringify({email, password})
     })
     const json = await response.json()
-
+    
     if (!response.ok) {
       SetIsLoading(false)
       setError(json.error)
     }
     if (response.ok) {
-      localStorage.setItem('user', JSON.stringify(json))
+      localStorage.setItem('user', JSON.stringify(json.token))
       dispatch({type: 'LOGIN', payload: json})
       SetIsLoading(false)
     }

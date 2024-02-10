@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext.jsx';
 
+
 // Pages imports
 import NavBar from './components/NavBar.jsx'
 import Home from './pages/home.jsx'
@@ -15,6 +16,8 @@ import MyProfile from './components/MyProfile.jsx';
 import AdminPage from './pages/admin.jsx';
 import AdminLogin from './pages/adminLogin.jsx';
 
+let admin = process.env.REACT_APP_ADMIN
+
 function App() {
 
   const { user } = useAuthContext()
@@ -24,7 +27,7 @@ function App() {
     <BrowserRouter>
     <NavBar />
     <div className='pages'>
-      { user && (user.email === 'admin@whistlr.com') && (
+      { user && (user.email === admin) && (
         <Routes>
           <Route 
           path='/admin'

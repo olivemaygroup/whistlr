@@ -115,7 +115,6 @@ const createCase = async (req, res) => {
     res.status(200).json(newCase)
 
   } catch (error) {
-    console.log(error)
     res.status(500).json({error: 'Internal server error'})
   }
 }
@@ -142,7 +141,6 @@ const deleteCase = async (req, res) => {
 
 const updateCase = async (req, res) => {
   const reported = req.body.reported;
-  console.log('Reported at controller', reported)
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({error: 'No case'})
@@ -156,7 +154,6 @@ const updateCase = async (req, res) => {
   if(!updateCase) {
     return res.status(400).json({error: 'No case to update'})
   }
-  console.log('controller res: ', updateCase)
   res.status(200).json(updateCase)
 }
 

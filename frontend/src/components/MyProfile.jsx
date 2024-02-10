@@ -25,7 +25,6 @@ const MyProfile = () => {
         });
 
         const json = await response.json();
-        console.log(json)
         if (response.ok) {
           setProfile(json);
           setError(null);

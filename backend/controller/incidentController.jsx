@@ -3,14 +3,9 @@ const mongoose = require('mongoose')
 
 // Get incidents
 
-const getIncidents = async (req, res) => {
+async function getIncidents (req, res) {
   const case_id  = req.params.id
-
-  console.log('get incident controller', req.params.id)
-
   const incidents = await Incident.find({ case_id }).sort({date: -1})
-
-  console.log('incidents at the controller', incidents)
   res.status(200).json(incidents)
 } 
 
@@ -78,14 +73,12 @@ const createIncident = async (req, res) => {
     res.status(200).json(newIncident)
 
   } catch (error) {
-    console.log(error)
     res.status(500).json({error: 'Internal server error'})
   }
 }
 
 const deleteIncident = async (req, res) => {
   const incidentId = req.params.id;
-  console.log('Controller incidentId: ', incidentId)
   if (!mongoose.Types.ObjectId.isValid(incidentId)) {
     return res.status(400).json({error: 'No incident'})
   }

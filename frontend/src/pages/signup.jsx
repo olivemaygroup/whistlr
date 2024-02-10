@@ -11,8 +11,12 @@ const Signup = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
+
     await signup(email, password)
-    navigate('/addprofile')
+   
+    if (error === null) {
+      navigate('/addprofile');
+    }
   }
 
   return (
@@ -33,7 +37,7 @@ const Signup = () => {
         onChange={(e) => setPassword(e.target.value)}
         value={password}></input>
       </div>
-      <button disabled={isLoading} ><h3>signup</h3></button>
+      <button disabled={isLoading}><h3>signup</h3></button>
       {error && <div className="error">{error}</div>}
     </form>
   )

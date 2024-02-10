@@ -4,7 +4,6 @@ import IncidentOverview from '../components/IncidentOverview'
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import moment from 'moment'
-// import { useMyIncidentsContext } from "../hooks/useMyIncidentsContext"
 
 const CaseOverview = ({ mycase }) => {
   
@@ -13,7 +12,6 @@ const CaseOverview = ({ mycase }) => {
   const [toggle, setToggle] = useState(false)
   const { user } = useAuthContext()
   const { dispatch } = useMycasesContext()
-  // const { myincidents, dispatch: dispatchIncident } = useMyIncidentsContext()
   const [localIncidents, SetLocalIncidents] = useState(null)
 
 
@@ -28,18 +26,14 @@ const CaseOverview = ({ mycase }) => {
         }
       })
       const json = await response.json()
-      console.log('incident fetch', json)
       
       if (response.ok) {
         SetLocalIncidents(json)
-        // dispatchIncident({type: 'SET_INCIDENTS', payload: json})
-        // console.log('dispatch console: ',dispatchIncident({type: 'SET_INCIDENTS', payload: json}))
       }
     }
     if (user) {
       fetchIncidents()
     }
-  // TODO: Add back in dispatchINcident if using global
   }, [ user, mycase._id])
 
     const handleClick = async () => {
@@ -82,7 +76,6 @@ const CaseOverview = ({ mycase }) => {
       return
     }
     const reported = (!mycase.reported)
-    console.log(reported)
 
     const response = await fetch('http://localhost:3003/case/'+mycase._id, {
       method: 'PATCH',
@@ -94,7 +87,6 @@ const CaseOverview = ({ mycase }) => {
       }
     })
     const json = await response.json()
-    console.log('patch response', json)
     if (response.ok) {
       dispatch({type: 'REPORT_CASE', payload: json})
     }

@@ -3,7 +3,6 @@ import { createContext, useReducer } from "react";
 export const MyIncidentsContext = createContext()
 
 export const myincidentsReducer = (state, action) => {
-  // console.log('incident payload', action.payload)
   switch (action.type) { 
     case 'SET_INCIDENTS':
       return {

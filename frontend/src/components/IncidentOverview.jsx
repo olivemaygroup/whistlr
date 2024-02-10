@@ -6,7 +6,6 @@ const IncidentOverview = ({ myincident, onDelete }) => {
 
   const shortDate = moment(myincident.date).format('Do MMM YY')
   const { user } = useAuthContext()
-  // const { dispatch } = useMyIncidentsContext()
 
   const handleDeleteClick = async () => {
     if (!user) {
@@ -20,10 +19,8 @@ const IncidentOverview = ({ myincident, onDelete }) => {
         'Authorization': `Bearer ${user.token}`
       }
     })
-    // const json = await response.json()
 
     if (response.ok) {
-      // dispatch({type: 'DELETE_INCIDENT', payload: json})
       onDelete(myincident._id)
     } else {
       console.log(response.error)

@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { useAuthContext } from './useAuthContext.jsx'
 
 export const useSignup = () => {
-  const [error, setError] = useState(null)
-  const [isLoading, setIsLoading] = useState(null)
+  const [error, SetError] = useState(null)
+  const [isLoading, SetIsLoading] = useState(null)
   const { dispatch } = useAuthContext()
-
-  const signup = async (email, password) => {
-    setIsLoading(true)
-    setError(null)
-
+  
+  
+  async function signup (email, password) {
+    SetIsLoading(true)
+    SetError(null)
+    
     const response = await fetch('http://localhost:3003/user/signup', {
       method: 'POST',
       mode: 'cors',
@@ -19,15 +20,16 @@ export const useSignup = () => {
     const json = await response.json()
 
     if (!response.ok) {
-      setIsLoading(false)
-      setError(json.error)
+      SetIsLoading(false)
+      SetError(json.error)
     }
+    
     if (response.ok) {
-      localStorage.setItem('user', JSON.stringify(json))
-
+      localStorage.setItem('user', JSON.stringify(json.token))
       dispatch({type: 'LOGIN', payload: json})
-      setIsLoading(false)
+      SetIsLoading(false)
     }
   }
+
   return { signup, isLoading, error }
 }

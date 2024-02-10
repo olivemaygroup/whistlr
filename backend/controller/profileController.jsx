@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const getProfile = async (req, res) => {
   const user_id = req.user._id
   
-  console.log(user_id)
   const profile = await Profile.find({ user_id })
 
   if(!profile) {
@@ -14,10 +13,8 @@ const getProfile = async (req, res) => {
   res.status(200).json(profile)
 }
 
-
 // Create profile
 const createProfile = async (req, res) => {
-  console.log('controller body', req.body)
   const {
     firstname,
     surname,
@@ -85,7 +82,6 @@ const createProfile = async (req, res) => {
     
     res.status(200).json(profile)
   } catch (error) {
-    console.log('create profile error: ', error)
     res.status(500).json({error: 'Internal server error'})
   }
 }
