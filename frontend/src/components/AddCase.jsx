@@ -173,8 +173,14 @@ try {
           </select>
         </div>
         <div className="info">
-          <h3>Info:</h3>
-          <p>We need this information because</p>
+          <h3>Summary</h3>
+          <p>To help the whistlr team understand the context of the case you are creating, it is important to provide details of the individual involved.</p>
+          <p><strong>Work email</strong></p>
+          <p>Any contact whistlr make with the individual on your behalf will ramain anonynous until you request otherwise.</p>
+          <p><strong>LinkedIn</strong></p>
+          <p>whistlr are able to use a LinkedIn message request to subtly propt the individual on your behalf.</p>
+          <p><strong>Marital Status</strong></p>
+          <p>This helps whistlr better understand the charater and motivations of the individual.</p>
         </div>
       </div>
       <h2>Details about their position in the company</h2>
@@ -262,8 +268,10 @@ try {
           </select>
         </div>
         <div className="info">
-          <h3>Info:</h3>
-          <p>We need this information because</p>
+          <h3>Summary</h3>
+          <p>The individuals position in the company and their influence over your day to day work and career is important so that the whistlr team can best support you.</p>
+          <p><strong>Projects, travel and hotel</strong></p>
+          <p>People in your position can feel particularly vulnerable when an individual may have the opportunity to work closely with you, travel or stay in hotels for work with you.</p>
         </div>        
       </div>
       <h2>Final step</h2>
@@ -279,7 +287,7 @@ try {
             <option>Yes</option>
             <option>No</option>
           </select>
-          <label>Select the initial level you would like to set for this case:</label>
+          <label>Select the initial grade you would like to set for this case:</label>
           <select
             onChange={(e) => SetLevel(e.target.value)}
             value={level}
@@ -292,8 +300,11 @@ try {
           </select>
         </div>
         <div className="info">
-          <h3>Info:</h3>
-          <p>We need this information because</p>
+          <h3>Grade</h3>
+          <p><strong>Level 1: </strong> Use this if you would just like to begin tracking incidents and do not want whistlr contact you for further support. </p>
+          <p><strong>Level 2: </strong> Use this if you would like whistlr to contact you and you are likely to want us to contact the individual anonymously either immediately or in the near future.</p>
+          <p><strong>Level 3: </strong>If you feel scared at work or home, and would like an immediate resolution with the senior management in your company.</p>
+
         </div>        
       </div>
       <button><h3>Create case</h3></button>

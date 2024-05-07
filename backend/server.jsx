@@ -29,7 +29,7 @@ app
   app.use('/admin', adminRoutes)
 
   // Connect to DB and listen
-const MongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/test'
+const MongoURI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/whistlr'
 const port = process.env.PORT || 3001;
 
   mongoose.connect(MongoURI)

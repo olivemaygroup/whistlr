@@ -176,8 +176,21 @@ const CreateIncident = () => {
           />
         </div>
         <div className="info">
-          <h3>Info:</h3>
-          <p>We need this information because</p>
+          <h3>Summary</h3>
+          <p>It is important that you give a fair and accurate account of each incident that has taken place.</p>
+          <p>Harrassment can occur in many forms, both physically and digitally, when you are at work or at home.</p>
+          <p><strong>Grade</strong></p>
+          <p>The overall grade of your case can be set by you at any time. Incidents can vary with severity. Please grade the incident appropriately so that the whistlr team can track the trend in the incidents occuring. </p>
+          <p><strong>Description</strong></p>
+          <p>Please describe the context, before, during and after the incident, including details of witnesses, or someone you confided in after.</p>
+          <p>For example:</p>
+          <ul>
+            <li>I was at our departments Christmas dinner at INSERT hotel</li>
+            <li>I was walking to the toilets when Joe Bloggs followed me in, placed his arm around me and told me my bum looked cute in my dress and suggested we went outside together</li>
+            <li>Later at the bar, Joe Bloggs came next to me and leant in to whisper in my ear, and placed his hand on my breast. I immediately removed his hand and walked away</li>
+            <li>My colleague JANE DOE followed me having seen it, to see if I was ok.</li>
+            <li>Later when I was at home, Joe Bloogs messaged me to see if I wanted to come to his place.</li>
+          </ul>
         </div>
       </div>
       <button><h3>Add incident</h3></button>

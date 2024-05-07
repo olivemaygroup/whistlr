@@ -29,13 +29,13 @@ MongoDB Atlas: Cloud hosting
 
 # Getting Started
 
-You will require MogoDB compass to be installed locally to host the database on your machine.
+You will require MongoDB compass to be installed locally to host the database on your machine.
 
 whistlrs server.jsx will create a text db for you
 
 ## NPM
 
-Fronm the root project folder:
+From the root project folder:
 
 `cd backend && npm i`
 `cd frontend && npm i`
@@ -46,12 +46,10 @@ Development mode
  `cd frontend`
  `npm start`
 
-Open http://localhost:3000
-
 
 #### Backend Scripts
 
-`cd frontend`
+`cd backend`
 `npm start`
 
-Sever listend on port 3001 and connect to your local MongoDB
+

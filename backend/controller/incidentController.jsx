@@ -51,7 +51,7 @@ const createIncident = async (req, res) => {
     emptyFields.push('description')
   }
   if (emptyFields.length > 0) {
-    return res.status(400).json({error: emptyFields})
+    return res.status(400).json({error: 'Please fill in all fields', emptyFields})
   }
   
   try {

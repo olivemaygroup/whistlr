@@ -21,7 +21,7 @@ const NavBar = () => {
       <nav>
         <div className="container">
           <Link to='/'>
-            <h1>whistlr.</h1>
+            <h1>{<text>whistlr</text>}{<text className='decimal'>.</text>}</h1>
           </Link>
           <div>
             {user && (
